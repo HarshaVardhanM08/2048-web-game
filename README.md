@@ -1,212 +1,373 @@
 # 🧩 2048 Web Game
 
-🔗 **Live Demo:**  
+A fully playable **2048 puzzle game in the browser** built using **HTML, CSS, and Vanilla JavaScript**.
+
+This project recreates the classic 2048 sliding tile game with smooth animations, keyboard and touch controls, persistent score tracking, and a responsive UI.
+
+---
+
+# 🌐 Live Demo
+
+🔗 **Play the Game**
+
 https://HarshaVardhanM08.github.io/2048-web-game/
 
-> A browser-playable version of the popular 2048 puzzle game — fully built using HTML, CSS, and Vanilla JavaScript.
+---
+
+# 📌 Project Overview
+
+The **2048 Web Game** is a browser-based implementation of the popular puzzle game originally created by **Gabriele Cirulli**.
+
+Players slide numbered tiles across a **4×4 grid**, merging identical tiles to create larger numbers. The goal is to reach the **2048 tile** while maximizing the score.
+
+This project focuses on:
+
+- Clean **Vanilla JavaScript game logic**
+- Smooth **CSS animations**
+- **Responsive design**
+- **LocalStorage score persistence**
+- **Keyboard + mobile swipe support**
+
+No frameworks or libraries are used — everything is built from scratch.
 
 ---
 
-## 📌 Project Overview
+# 🎮 Gameplay
 
-This is a fully responsive and interactive **2048 web game** inspired by the classic sliding puzzle. Players merge numbered tiles by swiping or using keyboard arrow keys to reach the tile **2048**.
+### Objective
+Combine tiles of the same number until you reach **2048**.
 
-This web version includes smooth animations, score tracking, mobile support, local storage saving of best scores, and a modern UI — all implemented without any frameworks or external libraries.
+### How It Works
 
-Key highlights:
-
-- ✔ Browser playable (no Python or backend)
-- ✔ Works on desktop + mobile
-- ✔ Keyboard + touch controls
-- ✔ Persistent best score via localStorage
-- ✔ Visually appealing tile animations
-- ✔ Light and dark color mode friendly UI
+1. The game starts with **two tiles** on a 4×4 board.
+2. Tiles slide in the direction of the player's move.
+3. When **two identical tiles collide**, they merge into one.
+4. The tile value doubles.
+5. The player earns points equal to the merged tile value.
+6. A **new tile (2 or 4)** appears after every move.
+7. The game ends when **no valid moves remain**.
 
 ---
 
-## ✨ Features
+# 🕹 Controls
 
-### 🧠 Core Gameplay
-- Slide tiles using arrow keys or swipes
-- Merge same numbered tiles
-- Random new tiles spawn after each move
-- Game ends when no moves remain
-- Win condition when 2048 tile appears
+### Keyboard Controls
 
-### 🎮 Controls
-| Input | Action |
-|-------|--------|
-| Arrow Keys | Move tiles |
-| WASD | Alternative controls |
-| Touch Swipe | Mobile sliding |
+| Key | Action |
+|----|------|
+| ↑ Arrow | Move Up |
+| ↓ Arrow | Move Down |
+| ← Arrow | Move Left |
+| → Arrow | Move Right |
+| W A S D | Alternative controls |
+| R | Restart game |
+
+### Mobile Controls
+
+| Gesture | Action |
+|------|------|
+| Swipe Up | Move Up |
+| Swipe Down | Move Down |
+| Swipe Left | Move Left |
+| Swipe Right | Move Right |
+
+---
+
+# ✨ Features
+
+### 🎯 Core Gameplay
+- Classic **2048 mechanics**
+- Tile merging logic
+- Dynamic tile generation
+- Game over detection
+- Win detection when reaching **2048**
+
+### 🎨 Modern UI
+- Clean and minimal design
+- Smooth tile animations
+- Color-coded tiles
+- Responsive layout
 
 ### 📊 Score System
-- Track current score
-- Best score stored locally
-- Live updating UI score panel
+- Real-time score updates
+- **Best score saved using localStorage**
+- Persistent across browser sessions
 
-### 📱 Responsive & Interactive
-- Adapts to all screen sizes
-- Touch interaction support
-- Modal overlays for win/game-over
-- Smooth tile transition animations
+### 📱 Mobile Friendly
+- Swipe gesture support
+- Responsive layout
+- Optimized tile scaling
 
----
-
-## 🛠️ Tech Stack
-
-| Technology | Role |
-|------------|------|
-| HTML5 | Structure |
-| CSS3 | Styling + Animations |
-| JavaScript | Game logic + Interactivity |
-| localStorage | Persistent best score |
-
-No frameworks. Pure, clean frontend code.
+### 🎉 Game States
+- Win overlay when reaching **2048**
+- Game Over overlay
+- Restart / Keep Playing options
 
 ---
 
-## 🧠 Game Logic Explained
+# 🧠 Game Logic
 
-1. The game initializes a 4×4 grid.
-2. Two tiles start in random positions (2 or 4 value).
-3. A move combines tiles of equal value in the direction of the swipe/keypress.
-4. Merged tiles increase score.
-5. A new tile appears after each successful move.
-6. Best score is updated and stored.
-7. Game ends when no valid moves remain.
+The game logic works through the following process:
 
-The logic ensures no invalid moves are allowed and handles both keyboard and touch interactions seamlessly.
+### 1️⃣ Grid Initialization
 
----
+A **4×4 matrix** represents the game board.
 
-## 📂 Project Structure
+Example:
 
 ```
-2048-web-game/
+[0, 2, 0, 2]
+[4, 0, 0, 0]
+[0, 0, 2, 0]
+[0, 0, 0, 0]
+```
+
+---
+
+### 2️⃣ Movement Algorithm
+
+When a move is triggered:
+
+1. Remove empty cells  
+2. Merge identical neighbors  
+3. Update score  
+4. Refill remaining spaces with zeros  
+
+Example:
+
+Before move left:
+
+```
+[2, 0, 2, 4]
+```
+
+After move:
+
+```
+[4, 4, 0, 0]
+```
+
+---
+
+### 3️⃣ Tile Generation
+
+After each move, a new tile appears:
+
+- **90% chance → 2**
+- **10% chance → 4**
+
+---
+
+### 4️⃣ Win Condition
+
+If a tile reaches **2048**, the player wins.
+
+---
+
+### 5️⃣ Game Over Condition
+
+The game ends when:
+
+- The board is full
+- No adjacent tiles can merge
+
+---
+
+# 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|--------|
+| HTML5 | Structure |
+| CSS3 | Styling & animations |
+| JavaScript | Game logic |
+| LocalStorage | Best score persistence |
+
+---
+
+# 📂 Project Structure
+
+```
+2048-web-game
 │
 ├── index.html
 ├── style.css
 ├── script.js
+├── LICENSE
 └── README.md
 ```
 
-- `index.html` — Main page
-- `style.css` — All styling and layout
-- `script.js` — Game logic and interactivity
-- `README.md` — This documentation
+### File Description
+
+**index.html**
+
+Main page containing:
+
+- Game board
+- Score panel
+- Overlays
+- Controls
+
+**style.css**
+
+Handles:
+
+- Layout
+- Tile colors
+- Animations
+- Responsive design
+
+**script.js**
+
+Contains:
+
+- Game engine
+- Tile merging logic
+- Input handling
+- Rendering system
 
 ---
 
-## 🖥️ How to Run Locally
+# 🚀 How To Run Locally
 
-### 1️⃣ Clone the repository
+### 1️⃣ Clone Repository
 
-```
+```bash
 git clone https://github.com/HarshaVardhanM08/2048-web-game.git
 ```
 
-### 2️⃣ Open the project
+### 2️⃣ Navigate into Folder
 
-```
+```bash
 cd 2048-web-game
 ```
 
-### 3️⃣ Launch the game
+### 3️⃣ Open the Game
 
-Open **index.html** in your browser.
+Simply open:
 
-That’s it! 🎉 The game will run instantly in any modern browser.
+```
+index.html
+```
+
+in any browser.
+
+No server required.
 
 ---
 
-## 🌍 Hosting via GitHub Pages
+# 🌍 Deployment (GitHub Pages)
 
-This project is published as a static website using GitHub Pages:
+This project is deployed using **GitHub Pages**.
 
-1. Go to **Repository → Settings**
+Steps:
+
+1. Go to **Repository Settings**
 2. Open **Pages**
-3. Select branch: `main`
-4. Folder: `/ (root)`
+3. Select branch **main**
+4. Select folder **root /**
 5. Save
 
-Your deployed site lives at:
+Your game will be available at:
 
-🟢 https://HarshaVardhanM08.github.io/2048-web-game/
-
----
-
-## 🎨 UI Highlights
-
-- Tile color gradients based on value
-- Animated tile movement
-- Clean minimal layout
-- Score panel and controls aligned for usability
-- Light/dark theme support via CSS variables
+```
+https://HarshaVardhanM08.github.io/2048-web-game/
+```
 
 ---
 
-## 📈 Future Enhancements
+# 🎨 UI Highlights
 
-Here are some upgrades you can make later:
-
-- 🔊 Add sound effects
-- 🎨 Theme selector (dark/light)
-- 🧠 AI auto-play option
-- 🏆 Leaderboard with Firebase
-- 🎯 Different grid sizes (5×5, 6×6)
-- 💾 Export/save game state
+- Animated tile appearance
+- Merge animation effects
+- Color gradient tiles
+- Responsive board layout
+- Minimal clean interface
 
 ---
 
-## 📜 Skills This Project Demonstrates
+# 📈 Possible Future Improvements
+
+Some ideas for extending the project:
+
+- 🔊 Sound effects
+- 🌙 Dark / Light theme toggle
+- 🧠 AI autoplay mode
+- 🏆 Online leaderboard
+- 🎯 Custom grid sizes (5×5 / 6×6)
+- 💾 Save & resume game state
+- 🎮 Multiplayer competitive mode
+
+---
+
+# 📚 Skills Demonstrated
+
+This project demonstrates important **frontend development skills**:
 
 - DOM manipulation
-- Algorithmic game logic
-- Event handling (keyboard + touch)
-- Responsive web design
-- localStorage management
-- CSS animation & layout design
+- Game algorithm design
+- Event handling
+- Responsive UI design
+- State management
+- LocalStorage usage
+- CSS animation techniques
 
-This makes the project resume-ready and ideal for showcasing frontend expertise.
+This makes the project **excellent for portfolios and resumes**.
 
 ---
 
-## 🤝 Contributing
+# 🤝 Contributing
 
 Contributions are welcome!
 
-If you’d like to contribute:
+If you'd like to contribute:
 
-1. Fork this repo
-2. Create a feature branch
-3. Commit your changes
-4. Open a Pull Request
+1. Fork the repository
+2. Create a new branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Add feature"
+```
+
+4. Push branch
+
+```bash
+git push origin feature-name
+```
+
+5. Open a Pull Request
 
 ---
 
-## 📜 License
+# 📜 License
 
 This project is licensed under the **MIT License**.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Harsha Vardhan Maradana**
 
-🔗 GitHub:  
+GitHub  
 https://github.com/HarshaVardhanM08
 
-🔗 LinkedIn:  
+LinkedIn  
 https://www.linkedin.com/in/harsha-vardhan-maradana-1a9911330/
 
 ---
 
-## ⭐ Support
+# ⭐ Support
 
-If you enjoyed this project, don’t forget to ⭐ the repo!
+If you like this project, please **give it a star ⭐ on GitHub**.
+
+It helps the project grow and supports the developer.
 
 ---
 
-# 🧩 Merge, Think, Aim for 2048! 🚀
+# 🧩 Merge Tiles • Think Strategically • Reach 2048 🚀
